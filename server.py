@@ -29,9 +29,9 @@ def get_pw(id):
     return id_list.get(id)
   return None
 
-@app.route('/aaa')
+@app.route('/test')
 @auth.login_required
-def aa():
+def test():
   return Response(response="ok", status=200)
 
 @app.route('/punchin')
@@ -58,6 +58,3 @@ def punchout():
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=80)
-
-## memo: iPhone の Chrome でベーシック認証を埋め込んだURLを開く: https://god-support.blogspot.com/2020/04/iphone-chrome-url.html
-## curl http://naoki:6HvdMe6w@localhost:80/auth
