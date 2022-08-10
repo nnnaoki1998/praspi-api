@@ -1,11 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 
 # ヘッドレスモードの設定
 options = Options()
 options.add_argument('--headless')
+
+executable_path = '/usr/bin/chromedriver'
 
 def login(driver, customer_id, login_id, password):
   driver.get("https://www.e4628.jp/")
@@ -19,7 +20,7 @@ def logout(driver):
   driver.quit()
 
 def punchin(customer_id, login_id, password):
-  with webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options) as driver:
+  with webdriver.Chrome(executable_path=executable_path, options=options) as driver:
     login(driver, customer_id, login_id, password)
     try:
       driver.find_element_by_css_selector("button[onclick = \"javascript:return(trDoStamping(1));\"]").click()
@@ -30,7 +31,7 @@ def punchin(customer_id, login_id, password):
     return is_success_punchin
 
 def punchout(customer_id, login_id, password):
-  with webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options) as driver:
+  with webdriver.Chrome(executable_path=executable_path, options=options) as driver:
     login(driver, customer_id, login_id, password)
     try:
       driver.find_element_by_css_selector("button[onclick = \"javascript:return(trDoStamping(2));\"]").click()
