@@ -17,14 +17,14 @@ def login(driver, customer_id, login_id, password):
   driver.find_element(By.ID, "id_passlogin").submit()
 
 def logout(driver):
-  driver.find_element_by_css_selector("img[onclick = \"javascript:document.getElementById('logout_form').submit();\"]").click()
+  driver.find_element(By.CSS_SELECTOR, "img[onclick = \"javascript:document.getElementById('logout_form').submit();\"]").click()
   driver.quit()
 
 def punchin(customer_id, login_id, password):
   with webdriver.Chrome(executable_path=executable_path, options=options) as driver:
     login(driver, customer_id, login_id, password)
     try:
-      driver.find_element_by_css_selector("button[onclick = \"javascript:return(trDoStamping(1));\"]").click()
+      driver.find_element(By.CSS_SELECTOR, "button[onclick = \"javascript:return(trDoStamping(1));\"]").click()
       is_success_punchin = True
     except:
       is_success_punchin = False
@@ -35,7 +35,7 @@ def punchout(customer_id, login_id, password):
   with webdriver.Chrome(executable_path=executable_path, options=options) as driver:
     login(driver, customer_id, login_id, password)
     try:
-      driver.find_element_by_css_selector("button[onclick = \"javascript:return(trDoStamping(2));\"]").click()
+      driver.find_element(By.CSS_SELECTOR, "button[onclick = \"javascript:return(trDoStamping(2));\"]").click()
       is_success_punchout = True
     except:
       is_success_punchout = False
